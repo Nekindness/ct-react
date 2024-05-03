@@ -1,63 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import './CardForm.css';
 
 const CardForm = ({ onSend }) => {
-  const [cardNumber, setCardNumber] = useState('');
-  const [cardMonth, setCardMonth] = useState('');
-  const [cardDate, setCardDate] = useState('');
-  const [cvc, setCvc] = useState('');
+  const { register, handleSubmit, reset } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
     const cardData = {
-      cardNumber,
-      cardDate: `${cardMonth}/${cardDate}`,
-      cvc
+      cardNumber: data.cardNumber,
+      cardDate: `${data.cardMonth}/${data.cardDate}`,
+      cvc: data.cvc
     };
     onSend(cardData);
-    setCardNumber('');
-    setCardMonth('');
-    setCardDate('');
-    setCvc('');
+    reset();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="card-form">
+    <form onSubmit={handleSubmit(onSubmit)} className="card-form">
       <div className="card-input">
         <label>Номер карты:</label>
-        <input
-          type="text"
-          value={cardNumber}
-          onChange={(e) => setCardNumber(e.target.value)}
-        />
+        <input type="text" {...register('cardNumber')} />
       </div>
       <div className="card-input">
         <label>Месяц:</label>
         <div className="date-input">
-          <input
-            type="text"
-            value={cardMonth}
-            onChange={(e) => setCardMonth(e.target.value)}
-          />
+          <input type="text" {...register('cardMonth')} />
           <span>/</span>
-          <input
-            type="text"
-            value={cardDate}
-            onChange={(e) => setCardDate(e.target.value)}
-          />
+          <input type="text" {...register('cardDate')} />
         </div>
-      </div>
+      </div>  
       <div className="card-input">
         <label>CVC код:</label>
-        <input
-          type="text"
-          value={cvc}
-          onChange={(e) => setCvc(e.target.value)}
-        />
+        <input type="text" {...register('cvc')} />
       </div>
       <button type="submit">Send</button>
     </form>
   );
 };
 
-export default CardForm;  
+export default CardForm;
