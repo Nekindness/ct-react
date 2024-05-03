@@ -1,7 +1,10 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import './CardTable.css';
 
 const CardTable = ({ cardData }) => {
+  const { register } = useForm();
+
   return (
     <table className="card-table">
       <thead>
