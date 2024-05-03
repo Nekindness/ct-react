@@ -1,0 +1,29 @@
+
+.card-form {
+    background-color: gray;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .card-input {
+    margin-bottom: 10px;
+  }
+  
+  .card-input label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .card-input input {
+    background-color: white;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  button[type="submit"] {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+  }
